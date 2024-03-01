@@ -1,7 +1,7 @@
 ### Hi there 👋
 
 - 🔭 I’m currently working on a personal project for fun and another project that will be on steam soon (I wish it come true 🙏) !
-- 🌱 I’m currently learning <p align="left"> <a href="https://www.cprogramming.com/" target="_blank" rel="noreferrer"> <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/c/c-original.svg" alt="c" width="10" height="10"/> </a>  and <a href="https://www.w3schools.com/cpp/" target="_blank" rel="noreferrer"> <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/cplusplus/cplusplus-original.svg" alt="cplusplus" width="10" height="10"/> </a> </p> last year and not a big of it to be honest. But with C++ i was reborn !
+- 🌱 <p align="left"> I’m currently learning <a href="https://www.cprogramming.com/" target="_blank" rel="noreferrer"> <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/c/c-original.svg" alt="c" width="20" height="20"/> </a> and <a href="https://www.w3schools.com/cpp/" target="_blank" rel="noreferrer"> <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/cplusplus/cplusplus-original.svg" alt="cplusplus" width="20" height="20"/> </a> last year and not a big of it to be honest. But with C++ i was reborn ! </p>
 - ⚡ Fun fact: I'm only 17 years old and am already most of my time coding and playing video games 🗿 (More coding than the other one)
 - 📖 I'm actually at Game Academy in France learning how to be a good programmer and to do money with video game (very important part 💀)
 
