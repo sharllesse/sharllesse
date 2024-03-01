@@ -1,11 +1,9 @@
 ### Hi there 👋
 
 - 🔭 I’m currently working on a personal project for fun and another project that will be on steam soon (I wish it come true 🙏) !
-- 🌱 I’m currently learning C++ and C last year and not a big of it to be honest. But with C++ i was reborn !
+- 🌱 I’m currently learning <p align="left"> <a href="https://www.cprogramming.com/" target="_blank" rel="noreferrer"> <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/c/c-original.svg" alt="c" width="40" height="40"/> </a>  and <a href="https://www.w3schools.com/cpp/" target="_blank" rel="noreferrer"> <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/cplusplus/cplusplus-original.svg" alt="cplusplus" width="40" height="40"/> </a> </p> last year and not a big of it to be honest. But with C++ i was reborn !
 - ⚡ Fun fact: I'm only 17 years old and am already most of my time coding and playing video games 🗿 (More coding than the other one)
 - 📖 I'm actually at Game Academy in France learning how to be a good programmer and to do money with video game (very important part 💀)
-
-<p align="left"> <a href="https://www.cprogramming.com/" target="_blank" rel="noreferrer"> <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/c/c-original.svg" alt="c" width="40" height="40"/> </a> <a href="https://www.w3schools.com/cpp/" target="_blank" rel="noreferrer"> <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/cplusplus/cplusplus-original.svg" alt="cplusplus" width="40" height="40"/> </a> </p>
 
 ![309379875-0945dda0-0d78-499a-8e6b-0c3f3f43247f](https://github.com/sharllesse/sharllesse/assets/95613353/0907e645-71ee-4496-ade7-3f1ccab9c482)
 <!--
