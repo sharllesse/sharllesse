@@ -5,7 +5,7 @@
 - ⚡ Fun fact: I'm only 17 years old and am already most of my time coding and playing video games 🗿 (More coding than the other one)
 - 📖 I'm actually at Game Academy in France learning how to be a good programmer and to do money with video game (very important part 💀)
 
-![image_2024-03-01_211948100](https://github.com/sharllesse/sharllesse/assets/95613353/0945dda0-0d78-499a-8e6b-0c3f3f43247f)
+![309379875-0945dda0-0d78-499a-8e6b-0c3f3f43247f](https://github.com/sharllesse/sharllesse/assets/95613353/0907e645-71ee-4496-ade7-3f1ccab9c482)
 <!--
 **sharllesse/sharllesse** is a ✨ _special_ ✨ repository because its `README.md` (this file) appears on your GitHub profile.
 
