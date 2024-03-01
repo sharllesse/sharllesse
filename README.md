@@ -1,6 +1,6 @@
 ### Hi there 👋
 
-- 🔭 I’m currently working on a personal project for fun and another project that will be on steam soon !
+- 🔭 I’m currently working on a personal project for fun and another project that will be on steam soon (I wish it come true 🙏) !
 - 🌱 I’m currently learning C++ and C last year and not a big of it to be honest. But with C++ i was reborn !
 - ⚡ Fun fact: I'm only 17 years old and am already most of time coding and playing video games ! (More coding than the other one)
 
