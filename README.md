@@ -1,11 +1,5 @@
 ### Hi there 👋
 
-- 🔭 I’m currently working on a personal project for fun and another project that will be on steam soon (I wish it come true 🙏) !
-- <p align="up"> 🌱 I’m currently learning <a href="https://www.cprogramming.com/" target="_blank" rel="noreferrer"> <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/c/c-original.svg" alt="c" width="20" height="20"/> </a> and <a href="https://www.w3schools.com/cpp/" target="_blank" rel="noreferrer"> <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/cplusplus/cplusplus-original.svg" alt="cplusplus" width="20" height="20"/> </a> last year and not a big of it to be honest. But with C++ i was reborn ! </p>
-- ⚡ Fun fact: I'm only 17 years old and am already most of my time coding and playing video games 🗿 (More coding than the other one)
-- 📖 I'm actually at Game Academy in France learning how to be a good programmer and to do money with video game (very important part 💀)
-
-
   <div align="center">
   <img src="https://github-readme-stats.vercel.app/api/top-langs?username=sharllesse&locale=en&hide_title=false&layout=compact&card_width=320&langs_count=5&theme=dracula&hide_border=true" height="150" alt="languages graph"  />
   <img src="https://streak-stats.demolab.com?user=sharllesse&locale=en&mode=daily&theme=dracula&hide_border=true&border_radius=5&order=3" height="150" alt="streak graph"  />
