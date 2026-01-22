@@ -1,14 +1,14 @@
 ### Hi there 👋
 
-> "A love-hate relationship with C++. Currently exploring native C#."
+> A love-hate relationship with C++. Currently exploring native C#.
 
 ---
 
 ### About Me
 
-- I’m currently working on **C++ projects**
-- I’m currently learning **Native C#**
-- **My Portfolio:** [Voir mon site (github.io)](https://sharllesse.github.io)
+- I’m currently working on **C++ and Unreal projects**
+- I’m currently learning **Native C# and interoperability with C++**
+- [**My Portfolio (github.io)**](https://sharllesse.github.io)
 
 ---
 
