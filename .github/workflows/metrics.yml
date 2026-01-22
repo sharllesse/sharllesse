@@ -20,12 +20,12 @@ jobs:
           # Options de base
           user: sharllesse  # <--- REMPLACE CECI PAR TON PSEUDO
           template: classic
-          base: header, activity, community, repositories, metadata
+          base: header, activity, repositories, metadata
           config_timezone: Europe/Paris
           
           # Plugin : Langages (Pour montrer C++ et C#)
           plugin_languages: yes
-          plugin_languages_ignored: html, css, tex, less, dockerfile, makefile, qmake, lex, cmake, gnuplot
+          plugin_languages_ignored: html, css, tex, less, dockerfile, makefile, qmake, lex, gnuplot
           plugin_languages_limit: 8
           plugin_languages_sections: most-used
           plugin_languages_colors: "github"
@@ -33,7 +33,7 @@ jobs:
 
           # Plugin : Calendrier isométrique (Ça fait très "Matrix/Pro")
           plugin_isocalendar: yes
-          plugin_isocalendar_duration: half-year
+          plugin_isocalendar_duration: full-year
 
           # Plugin : Lignes de code (Montre que tu bosses dur)
           plugin_lines: yes
