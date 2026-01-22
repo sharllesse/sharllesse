@@ -20,7 +20,7 @@ jobs:
           # Options de base
           user: sharllesse  # <--- REMPLACE CECI PAR TON PSEUDO
           template: classic
-          base: header, activity, repositories, metadata
+          base: header, repositories, activity, metadata
           config_timezone: Europe/Paris
           
           # Plugin : Langages (Pour montrer C++ et C#)
