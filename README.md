@@ -1,41 +1,34 @@
-### Hi there 👋
+<!-- The frames in assets/ are generated from the portfolio's data: see generator/. -->
 
-> A love-hate relationship with C++. Currently exploring native C#.
+<a href="https://sharllesse.github.io">
+  <img src="assets/header.svg" alt="Charles Lesage, Engine & Tools Programmer. A C++ developer drawn to the systems and tools behind games and game engines." width="100%">
+</a>
 
----
+<p align="center">
+  <a href="https://sharllesse.github.io"><img src="assets/link-portfolio.svg" alt="Portfolio" width="150"></a>
+  <a href="https://www.linkedin.com/in/charles-lesage-6971b129b/"><img src="assets/link-linkedin.svg" alt="LinkedIn" width="150"></a>
+  <a href="mailto:charles.lesage.pro@outlook.fr"><img src="assets/link-email.svg" alt="Email" width="150"></a>
+</p>
 
-### About Me
+<img src="assets/section-work.svg" alt="002 Selected work" width="100%">
 
-- I’m currently working on **C++ and Unreal projects**
-- I’m currently learning **Native C# and interoperability with C++**
-- [**My Portfolio (github.io)**](https://sharllesse.github.io)
+<p>
+  <a href="https://github.com/Logicraft-Interactive/CoreUtils"><img src="assets/work-1.svg" alt="Logicraft Core Utils: modular Unreal Engine 5 plugin in C++20" width="49%"></a>
+  <a href="https://github.com/sharllesse/Reflection-Cpp"><img src="assets/work-2.svg" alt="C++ Reflection: lightweight C++20 reflection system" width="49%"></a>
+  <a href="https://github.com/Xanhos/LogiCraft"><img src="assets/work-3.svg" alt="Logicraft: custom C++ game editor with SFML and ImGui" width="49%"></a>
+  <a href="https://store.steampowered.com/app/2839290/Enter_The_Lost_Chamber/"><img src="assets/work-4.svg" alt="Enter the Lost Chamber: C++ roguelike published on Steam" width="49%"></a>
+</p>
 
----
+<img src="assets/section-stack.svg" alt="003 Stack" width="100%">
 
-<div align="center">
-  <table align="center">
-    <tr>
-      <td valign="top" width="35%">
-        <h3>Tech Stack</h3>
-        <p>
-          <img src="https://img.shields.io/badge/c++-%2300599C.svg?style=for-the-badge&logo=c%2B%2B&logoColor=white" alt="C++" /> 
-          <img src="https://img.shields.io/badge/CMake-%23008FBA.svg?style=for-the-badge&logo=cmake&logoColor=white" alt="Cmake"> <br><br>
-          <img src="https://img.shields.io/badge/c%23-%23239120.svg?style=for-the-badge&logo=c-sharp&logoColor=white" alt="C#" />
-          <img src="https://img.shields.io/badge/.NET-512BD4?style=for-the-badge&logo=dotnet&logoColor=white" alt=".NET" /> <br><br>
-          <img src="https://img.shields.io/badge/unrealengine-%23313131.svg?style=for-the-badge&logo=unrealengine&logoColor=white" alt="UnrealEngine" />
-          <img src="https://img.shields.io/badge/unity-%23000000.svg?style=for-the-badge&logo=unity&logoColor=white" alt="Unity" /> <br><br>
-          <img src="https://img.shields.io/badge/git-%23F05033.svg?style=for-the-badge&logo=git&logoColor=white" alt="Git" /> <br><br>
-          <img src="https://img.shields.io/badge/Visual%20Studio-5C2D91.svg?style=for-the-badge&logo=visual-studio&logoColor=white" alt="Visual Studio" />
-          <img src="https://img.shields.io/badge/Rider-000000.svg?style=for-the-badge&logo=Rider&logoColor=white&color=black&labelColor=crimson" alt="Rider" />
-          <img src="https://img.shields.io/badge/CLion-black?style=for-the-badge&logo=clion&logoColor=white&labelColor=00d980" alt="Clion" />
-        </p>
-      </td>
-      <td valign="top" width="65%">
-        <h3>GitHub Analytics</h3>
-        <div align="center">
-          <img src="https://github.com/sharllesse/sharllesse/blob/main/github-metrics.svg" alt="Metrics" width="75%">
-        </div>
-      </td>
-    </tr>
-  </table>
-</div>
+<img src="assets/stack.svg" alt="Stack: C++, C#, CMake, .NET, Unreal Engine, Unity, Git, Visual Studio, Rider, CLion" width="100%">
+
+<img src="assets/section-telemetry.svg" alt="004 Telemetry" width="100%">
+
+<p align="center">
+  <img src="github-metrics.svg" alt="GitHub metrics" width="75%">
+</p>
+
+<a href="https://sharllesse.github.io">
+  <img src="assets/tail.svg" alt="End. sharllesse.github.io" width="100%">
+</a>

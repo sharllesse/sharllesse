@@ -1,0 +1,13 @@
+{
+  "name": "sharllesse-readme",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "build": "tsx src/build.ts"
+  },
+  "devDependencies": {
+    "satori": "^0.33.5",
+    "sharp": "^0.35.5",
+    "tsx": "^4.23.15"
+  }
+}

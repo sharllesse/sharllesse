@@ -1,6 +1,7 @@
 name: Metrics
 on:
-  schedule: [{cron: "0 0 * * *"}]
+  # Off the hour: runs queued at 00:00 UTC are the first GitHub drops under load.
+  schedule: [{cron: "23 4 * * *"}]
   workflow_dispatch:
   push: {branches: ["master", "main"]}
 
@@ -23,7 +24,8 @@ jobs:
           plugin_languages_ignored: html, css, tex, less, dockerfile, lex, gnuplot
           plugin_languages_limit: 8
           plugin_languages_sections: most-used
-          plugin_languages_colors: "github"
+          # By rank, from the portfolio's ramp: the most used language takes the one warm accent.
+          plugin_languages_colors: "0:#e8a55c, 1:#dfe7ec, 2:#a3b2bd, 3:#7d8d99, 4:#7d8d99, 5:#7d8d99, 6:#7d8d99, 7:#7d8d99"
           plugin_languages_details: lines, percentage
           plugin_languages_indepth: yes
           
@@ -31,3 +33,20 @@ jobs:
           plugin_isocalendar_duration: full-year
 
           plugin_lines: yes
+
+          # Grade the classic template into the README's "Camera Negative" stock.
+          extras_css: |
+            .items-wrapper { background: #16171a; border: 1px solid rgba(219,227,232,.19); padding: 4px; }
+            svg { color: #a3b2bd !important; }
+            h1, h2, h3 { color: #dfe7ec !important; }
+            h1 svg, h2 svg, h3 svg { fill: #e8a55c !important; }
+            .field svg { fill: #7d8d99 !important; }
+            small, footer, .field.language.details small { color: #7d8d99 !important; }
+            .avatar { border-radius: 0 !important; }
+            .calendar .day { outline-color: rgba(219,227,232,.06) !important; }
+            [fill="#ebedf0"] { fill: #1e2023 !important; }
+            [fill="#9be9a8"] { fill: #4a3620 !important; }
+            [fill="#40c463"] { fill: #7d5a30 !important; }
+            [fill="#30a14e"] { fill: #b07c42 !important; }
+            [fill="#216e39"] { fill: #e8a55c !important; }
+            svg.bar rect[fill="#d1d5da"] { fill: #1e2023 !important; }
