@@ -1,8 +1,6 @@
 <!-- The frames in assets/ are generated from the portfolio's data: see generator/. -->
 
-<a href="https://sharllesse.github.io">
-  <img src="assets/header.svg" alt="Hello there. I'm Charles, a C++ developer drawn to the systems and tools behind games and game engines." width="100%">
-</a>
+<img src="assets/header.svg" alt="Hello there. I'm Charles, a C++ developer drawn to the systems and tools behind games and game engines." width="100%">
 
 <p align="center">
   <a href="https://sharllesse.github.io"><img src="assets/link-portfolio.svg" alt="Portfolio" width="150"></a>
@@ -29,6 +27,4 @@
   <img src="github-metrics.svg" alt="GitHub metrics" width="75%">
 </p>
 
-<a href="https://sharllesse.github.io">
-  <img src="assets/tail.svg" alt="End. sharllesse.github.io" width="100%">
-</a>
+<img src="assets/tail.svg" alt="End" width="100%">

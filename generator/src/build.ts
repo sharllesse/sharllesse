@@ -183,8 +183,7 @@ async function header() {
         h("div", { width: 1060, marginTop: 24 }, rich(introBio(), 21)),
         h("div", { marginTop: "auto", marginBottom: 22, paddingTop: 14, borderTop: `1px solid ${C.edgeSoft}`,
           alignItems: "center", gap: 20 },
-          chip("001"), monoText(P.frameSlates.identity.role.en, 14, C.ink2), monoText(P.site.location, 14),
-          h("div", { marginLeft: "auto" }, monoText(P.site.url.replace("https://", ""), 14))))),
+          chip("001"), monoText(P.frameSlates.identity.role.en, 14, C.ink2), monoText(P.site.location, 14)))),
     W, H, { grain: 0.09, animate: true });
 }
 
@@ -263,8 +262,7 @@ async function tail() {
     h("div", { width: W, height: H, background: C.base, padding: "0 28px" },
       h("div", { flex: 1, alignItems: "center", gap: 22, borderTop: `1px solid ${C.edge}`, marginTop: 14 },
         chip(P.frameSlates.tail.role.en.toUpperCase(), 16),
-        monoText("Thanks for scrolling the reel", 15, C.ink2),
-        h("div", { marginLeft: "auto" }, monoText(P.frameSlates.tail.source, 15, C.chroma, { fontWeight: 600 })))),
+        monoText("Thanks for scrolling the reel", 15, C.ink2))),
     W, H, { grain: 0.04 });
 }
 
