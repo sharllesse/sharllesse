@@ -1,7 +1,7 @@
 <!-- The frames in assets/ are generated from the portfolio's data: see generator/. -->
 
 <a href="https://sharllesse.github.io">
-  <img src="assets/header.svg" alt="Hello there. Engine & Tools Programmer: a C++ developer drawn to the systems and tools behind games and game engines." width="100%">
+  <img src="assets/header.svg" alt="Hello there. I'm Charles, a C++ developer drawn to the systems and tools behind games and game engines." width="100%">
 </a>
 
 <p align="center">

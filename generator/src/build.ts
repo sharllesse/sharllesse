@@ -163,18 +163,24 @@ const frame = (w: number, h_: number, ...children: Node[]) =>
     h("div", { flex: 1, border: `1px solid ${C.edge}`, background: C.field, flexDirection: "column" }, ...children));
 
 // ---- 001 · Profile ------------------------------------------------------------------
-/** A greeting, not the name: GitHub already prints the name and avatar right beside the README. */
+/** The portfolio's bio opens under the name ("A C++ developer..."). Here there is no name
+ *  above it, so it introduces itself. Derived, not copied, so the rest stays in sync. */
+function introBio(): string {
+  const bio = (P.bio.en as string).replace(/\s+/g, " ").trim();
+  if (!/^A /.test(bio)) throw new Error(`portfolio bio no longer starts with "A ": update introBio()`);
+  return bio.replace(/^A /, `I'm ${(P.site.name as string).split(" ")[0]}, a `);
+}
+
 async function header() {
-  const W = 1200, H = 430;
+  const W = 1200, H = 322;
   await render("header.svg",
     h("div", { width: W, height: H, background: C.base, padding: 20 },
-      h("div", { flex: 1, flexDirection: "column", border: `1px solid ${C.edge}`, padding: "58px 44px 0" },
+      h("div", { flex: 1, flexDirection: "column", border: `1px solid ${C.edge}`, padding: "50px 44px 0" },
         h("div", { alignItems: "center" },
-          monoText(P.site.role.en, 17, C.chroma, { fontWeight: 600, letterSpacing: 4.6 }),
-          h("div", { width: 11, height: 20, background: CARET_MARK, marginLeft: 6 })),
-        h("span", { marginTop: 22, fontFamily: WIDE, fontWeight: 600, fontSize: 96, lineHeight: 0.94,
-          letterSpacing: 5, color: C.ink, textShadow: `0 0 16px ${C.halo}` }, "HELLO THERE"),
-        h("div", { width: 1060, marginTop: 30 }, rich(P.bio.en, 20)),
+          h("span", { fontFamily: WIDE, fontWeight: 600, fontSize: 46, letterSpacing: 3, color: C.ink,
+            textShadow: `0 0 12px ${C.halo}` }, "HELLO THERE"),
+          h("div", { width: 14, height: 34, background: CARET_MARK, marginLeft: 12 })),
+        h("div", { width: 1060, marginTop: 24 }, rich(introBio(), 21)),
         h("div", { marginTop: "auto", marginBottom: 22, paddingTop: 14, borderTop: `1px solid ${C.edgeSoft}`,
           alignItems: "center", gap: 20 },
           chip("001"), monoText(P.frameSlates.identity.role.en, 14, C.ink2), monoText(P.site.location, 14),
