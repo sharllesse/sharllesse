@@ -124,7 +124,9 @@ async function graded(file: string, w: number, h_: number, focusY: number) {
 const TILE = 64;
 const noiseTile = await (async () => {
   const px = Buffer.alloc(TILE * TILE);
-  for (let i = 0; i < px.length; i++) px[i] = Math.floor(Math.random() * 256);
+  // Seeded, so a rebuild only changes the frames whose content changed.
+  let seed = 0x2545f491;
+  for (let i = 0; i < px.length; i++) px[i] = (seed = (Math.imul(seed, 1664525) + 1013904223) >>> 0) >>> 24;
   const png = await sharp(px, { raw: { width: TILE, height: TILE, channels: 1 } }).png({ compressionLevel: 9 }).toBuffer();
   return `data:image/png;base64,${png.toString("base64")}`;
 })();
@@ -202,8 +204,7 @@ async function link(name: string, label: string, primary = false) {
   await render(name,
     h("div", { width: W, height: H, background: primary ? C.chroma : C.field, border: `2px solid ${primary ? C.chroma : C.edge}`,
       alignItems: "center", justifyContent: "center", gap: 14 },
-      monoText(label, 19, primary ? C.chromaOn : C.ink, { fontWeight: 600, letterSpacing: 3 }),
-      monoText("->", 19, primary ? C.chromaOn : C.chroma, { fontWeight: 600 })),
+      monoText(label, 19, primary ? C.chromaOn : C.ink, { fontWeight: 600, letterSpacing: 3 })),
     W, H, { grain: 0.04 });
 }
 
@@ -229,7 +230,7 @@ async function card(p: any, i: number) {
             fontFamily: MONO, fontSize: 14, letterSpacing: 1, color: C.ink2 }, t))),
         h("div", { marginTop: 24, paddingTop: 18, borderTop: `1.5px solid ${C.edgeSoft}`, alignItems: "center", gap: 16 },
           chip(`002.${i + 1}`, 14), monoText(p.date.en, 14, C.ink2), monoText(p.slate.role.en, 14),
-          h("div", { marginLeft: "auto" }, monoText(`${p.cta.en} ->`, 14, C.chroma, { fontWeight: 600 }))))),
+          h("div", { marginLeft: "auto" }, monoText(p.cta.en, 14, C.chroma, { fontWeight: 600 }))))),
     CARD_W, CARD_H, { grain: 0.06 });
 }
 
@@ -261,7 +262,7 @@ async function tail() {
       h("div", { flex: 1, alignItems: "center", gap: 22, borderTop: `1px solid ${C.edge}`, marginTop: 14 },
         chip(P.frameSlates.tail.role.en.toUpperCase(), 16),
         monoText("Thanks for scrolling the reel", 15, C.ink2),
-        h("div", { marginLeft: "auto" }, monoText(`${P.frameSlates.tail.source} ->`, 15, C.chroma, { fontWeight: 600 })))),
+        h("div", { marginLeft: "auto" }, monoText(P.frameSlates.tail.source, 15, C.chroma, { fontWeight: 600 })))),
     W, H, { grain: 0.04 });
 }
 
