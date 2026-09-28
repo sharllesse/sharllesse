@@ -188,7 +188,7 @@ async function section(name: string, no: string, title: string) {
     h("div", { width: W, height: H, background: C.base, padding: "0 28px", alignItems: "flex-end" },
       h("div", { flex: 1, alignItems: "center", gap: 22, paddingBottom: 16, borderBottom: `1px solid ${C.edge}` },
         chip(no, 16),
-        h("span", { fontFamily: WIDE, fontWeight: 500, fontSize: 30, letterSpacing: 3.6, color: C.ink }, title.toUpperCase())))),
+        h("span", { fontFamily: WIDE, fontWeight: 500, fontSize: 30, letterSpacing: 3.6, color: C.ink }, title.toUpperCase()))),
     W, H, { grain: 0.04 });
 }
 
