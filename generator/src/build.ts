@@ -163,41 +163,22 @@ const frame = (w: number, h_: number, ...children: Node[]) =>
     h("div", { flex: 1, border: `1px solid ${C.edge}`, background: C.field, flexDirection: "column" }, ...children));
 
 // ---- 001 · Profile ------------------------------------------------------------------
-const PROFILE_CODE = [
-  `<span class="k">struct</span> <span class="t">Charles</span> <span class="p">:</span> <span class="t">Programmer</span> <span class="p">{</span>`,
-  `  <span class="t">Focus</span>  focus <span class="p">=</span> Engine <span class="p">|</span> Tools<span class="p">;</span>`,
-  `  <span class="t">Lang</span>   main  <span class="p">=</span> <span class="s">"C++20"</span><span class="p">;</span>`,
-  `  <span class="t">Engine</span> daily <span class="p">=</span> <span class="s">"Unreal Engine 5"</span><span class="p">;</span>`,
-  ``,
-  `  <span class="k">bool</span> lost_in_ue_source <span class="p">=</span> <span class="k">true</span><span class="p">;</span>`,
-  `<span class="p">};</span>`,
-].join("\n");
-
+/** A greeting, not the name: GitHub already prints the name and avatar right beside the README. */
 async function header() {
-  const W = 1200, H = 520;
-  const [first, ...rest] = (P.site.name as string).toUpperCase().split(" ");
+  const W = 1200, H = 430;
   await render("header.svg",
     h("div", { width: W, height: H, background: C.base, padding: 20 },
-      h("div", { flex: 1, border: `1px solid ${C.edge}`, padding: "0 20px 0 44px" },
-        h("div", { flex: 1, flexDirection: "column", paddingTop: 58 },
-          h("div", { alignItems: "center" },
-            monoText(P.site.role.en, 17, C.chroma, { fontWeight: 600, letterSpacing: 4.6 }),
-            h("div", { width: 11, height: 20, background: CARET_MARK, marginLeft: 6 })),
-          h("div", { flexDirection: "column", marginTop: 22, fontFamily: WIDE, fontWeight: 600, fontSize: 96,
-            lineHeight: 0.94, letterSpacing: 5, color: C.ink, textShadow: `0 0 16px ${C.halo}` },
-            h("span", {}, first), h("span", {}, rest.join(" "))),
-          h("div", { width: 690, marginTop: 28 }, rich(P.bio.en, 19)),
-          h("div", { marginTop: "auto", marginBottom: 22, paddingTop: 14, borderTop: `1px solid ${C.edgeSoft}`,
-            alignItems: "center", gap: 20, width: 700 },
-            chip("001"), monoText(P.frameSlates.identity.role.en, 14, C.ink2), monoText(P.site.location, 14))),
-        h("div", { flexDirection: "column", justifyContent: "center", alignItems: "flex-end", gap: 14 },
-          // A code gate, like the project cards. GitHub already shows the avatar beside the
-          // README; a second portrait next to it read as the same face twice.
-          h("div", { width: 380, height: 384, flexDirection: "column", justifyContent: "center",
-            padding: "0 26px", background: C.field2, border: `1px solid ${C.edge}` },
-            h("span", { fontFamily: MONO, fontSize: 13, letterSpacing: 2.6, color: C.ink3, marginBottom: 18 }, "profile.h"),
-            code(PROFILE_CODE, 14)),
-          monoText(P.site.url.replace("https://", ""), 13)))),
+      h("div", { flex: 1, flexDirection: "column", border: `1px solid ${C.edge}`, padding: "58px 44px 0" },
+        h("div", { alignItems: "center" },
+          monoText(P.site.role.en, 17, C.chroma, { fontWeight: 600, letterSpacing: 4.6 }),
+          h("div", { width: 11, height: 20, background: CARET_MARK, marginLeft: 6 })),
+        h("span", { marginTop: 22, fontFamily: WIDE, fontWeight: 600, fontSize: 96, lineHeight: 0.94,
+          letterSpacing: 5, color: C.ink, textShadow: `0 0 16px ${C.halo}` }, "HELLO THERE"),
+        h("div", { width: 1060, marginTop: 30 }, rich(P.bio.en, 20)),
+        h("div", { marginTop: "auto", marginBottom: 22, paddingTop: 14, borderTop: `1px solid ${C.edgeSoft}`,
+          alignItems: "center", gap: 20 },
+          chip("001"), monoText(P.frameSlates.identity.role.en, 14, C.ink2), monoText(P.site.location, 14),
+          h("div", { marginLeft: "auto" }, monoText(P.site.url.replace("https://", ""), 14))))),
     W, H, { grain: 0.09, animate: true });
 }
 
