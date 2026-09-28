@@ -93,7 +93,8 @@ function code(html: string, size: number): Node {
   return h("div", { flexDirection: "column", fontFamily: MONO, fontSize: size, lineHeight: 1.62 },
     ...html.split("\n").map((line) => {
       const toks = [...line.matchAll(/<span class="(\w)">(.*?)<\/span>|([^<]+)/g)]
-        .map((m) => ({ cls: m[1] ?? "", text: decode(m[2] ?? m[3]) }));
+        // Non-breaking spaces: Satori trims plain spaces at span edges, which glued tokens together.
+        .map((m) => ({ cls: m[1] ?? "", text: decode(m[2] ?? m[3]).replace(/ /g, " ") }));
       return h("div", { whiteSpace: "pre", minHeight: size * 1.62 },
         ...toks.map((t) => h("span", { whiteSpace: "pre", ...SYN[t.cls] }, t.text)));
     }));
@@ -162,9 +163,18 @@ const frame = (w: number, h_: number, ...children: Node[]) =>
     h("div", { flex: 1, border: `1px solid ${C.edge}`, background: C.field, flexDirection: "column" }, ...children));
 
 // ---- 001 · Profile ------------------------------------------------------------------
+const PROFILE_CODE = [
+  `<span class="k">struct</span> <span class="t">Charles</span> <span class="p">:</span> <span class="t">Programmer</span> <span class="p">{</span>`,
+  `  <span class="t">Focus</span>  focus <span class="p">=</span> Engine <span class="p">|</span> Tools<span class="p">;</span>`,
+  `  <span class="t">Lang</span>   main  <span class="p">=</span> <span class="s">"C++20"</span><span class="p">;</span>`,
+  `  <span class="t">Engine</span> daily <span class="p">=</span> <span class="s">"Unreal Engine 5"</span><span class="p">;</span>`,
+  ``,
+  `  <span class="k">bool</span> lost_in_ue_source <span class="p">=</span> <span class="k">true</span><span class="p">;</span>`,
+  `<span class="p">};</span>`,
+].join("\n");
+
 async function header() {
   const W = 1200, H = 520;
-  const portrait = await graded("portrait-640.webp", 656, 768, 0.22);
   const [first, ...rest] = (P.site.name as string).toUpperCase().split(" ");
   await render("header.svg",
     h("div", { width: W, height: H, background: C.base, padding: 20 },
@@ -181,7 +191,12 @@ async function header() {
             alignItems: "center", gap: 20, width: 700 },
             chip("001"), monoText(P.frameSlates.identity.role.en, 14, C.ink2), monoText(P.site.location, 14))),
         h("div", { flexDirection: "column", justifyContent: "center", alignItems: "flex-end", gap: 14 },
-          h("div", { border: `1px solid ${C.edge}` }, img(portrait, 328, 384)),
+          // A code gate, like the project cards. GitHub already shows the avatar beside the
+          // README; a second portrait next to it read as the same face twice.
+          h("div", { width: 380, height: 384, flexDirection: "column", justifyContent: "center",
+            padding: "0 26px", background: C.field2, border: `1px solid ${C.edge}` },
+            h("span", { fontFamily: MONO, fontSize: 13, letterSpacing: 2.6, color: C.ink3, marginBottom: 18 }, "profile.h"),
+            code(PROFILE_CODE, 14)),
           monoText(P.site.url.replace("https://", ""), 13)))),
     W, H, { grain: 0.09, animate: true });
 }
