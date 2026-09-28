@@ -33,8 +33,6 @@ const C = {
   ink: "#dfe7ec", ink2: "#a3b2bd", ink3: "#7d8d99",
   chroma: "#e8a55c", chromaOn: "#060a0d", halo: "rgba(255,194,122,0.42)",
 };
-// A fill no token uses, so the caret can be found in Satori's output and animated.
-const CARET_MARK = "#e8a55d";
 
 const font = (f: string) => readFileSync(join(HERE, "..", "fonts", f));
 const FONTS = [
@@ -133,13 +131,11 @@ const noiseTile = await (async () => {
 })();
 const GRAIN_DEFS = `<defs><pattern id="grain" width="${TILE}" height="${TILE}" patternUnits="userSpaceOnUse">`
   + `<image href="${noiseTile}" width="${TILE}" height="${TILE}"/></pattern></defs>`;
-/** Only the header moves: the grain boils like the portfolio's, and the role line has a caret. */
+/** Only the header moves: the grain boils like the portfolio's. */
 const MOTION = `<style>
 .boil{animation:boil .9s steps(1) infinite}
 @keyframes boil{0%{transform:translate(0,0)}25%{transform:translate(-57px,31px)}50%{transform:translate(43px,-71px)}75%{transform:translate(-23px,-17px)}}
-.caret{animation:blink 1.1s steps(1) infinite}
-@keyframes blink{50%{opacity:0}}
-@media (prefers-reduced-motion:reduce){.boil,.caret{animation:none}}
+@media (prefers-reduced-motion:reduce){.boil{animation:none}}
 </style>`;
 
 async function render(name: string, node: Node, width: number, height: number,
@@ -152,7 +148,6 @@ async function render(name: string, node: Node, width: number, height: number,
     // Glyph outlines only: a tenth of a unit is invisible at 2x and keeps the files light.
     .replace(/ d="([^"]*)"/g, (_, d) => ` d="${d.replace(/(\d+\.\d)\d+/g, "$1")}"`)
     .replace(/(<svg[^>]*>)/, `$1${animate ? MOTION : ""}${GRAIN_DEFS}`)
-    .replace(new RegExp(`fill="${CARET_MARK}"`, "g"), `fill="${C.chroma}"${animate ? ' class="caret"' : ""}`)
     .replace(/<\/svg>$/, `${noise}</svg>`);
   writeFileSync(join(OUT, name), svg);
   console.log(`assets/${name}`.padEnd(34), `${(svg.length / 1024).toFixed(0)} KB`);
@@ -178,8 +173,7 @@ async function header() {
       h("div", { flex: 1, flexDirection: "column", border: `1px solid ${C.edge}`, padding: "50px 44px 0" },
         h("div", { alignItems: "center" },
           h("span", { fontFamily: WIDE, fontWeight: 600, fontSize: 46, letterSpacing: 3, color: C.ink,
-            textShadow: `0 0 12px ${C.halo}` }, "HELLO THERE"),
-          h("div", { width: 14, height: 34, background: CARET_MARK, marginLeft: 12 })),
+            textShadow: `0 0 12px ${C.halo}` }, "HELLO THERE")),
         h("div", { width: 1060, marginTop: 24 }, rich(introBio(), 21)),
         h("div", { marginTop: "auto", marginBottom: 22, paddingTop: 14, borderTop: `1px solid ${C.edgeSoft}`,
           alignItems: "center", gap: 20 },
@@ -188,14 +182,13 @@ async function header() {
 }
 
 // ---- Section slates -------------------------------------------------------------------
-async function section(name: string, no: string, title: string, detail: string) {
+async function section(name: string, no: string, title: string) {
   const W = 1200, H = 96;
   await render(name,
     h("div", { width: W, height: H, background: C.base, padding: "0 28px", alignItems: "flex-end" },
       h("div", { flex: 1, alignItems: "center", gap: 22, paddingBottom: 16, borderBottom: `1px solid ${C.edge}` },
         chip(no, 16),
-        h("span", { fontFamily: WIDE, fontWeight: 500, fontSize: 30, letterSpacing: 3.6, color: C.ink }, title.toUpperCase()),
-        h("div", { marginLeft: "auto" }, monoText(detail, 14)))),
+        h("span", { fontFamily: WIDE, fontWeight: 500, fontSize: 30, letterSpacing: 3.6, color: C.ink }, title.toUpperCase())))),
     W, H, { grain: 0.04 });
 }
 
@@ -262,7 +255,7 @@ async function tail() {
     h("div", { width: W, height: H, background: C.base, padding: "0 28px" },
       h("div", { flex: 1, alignItems: "center", gap: 22, borderTop: `1px solid ${C.edge}`, marginTop: 14 },
         chip(P.frameSlates.tail.role.en.toUpperCase(), 16),
-        monoText("Thanks for scrolling the reel", 15, C.ink2))),
+        monoText("Thanks for scrolling", 15, C.ink2))),
     W, H, { grain: 0.04 });
 }
 
@@ -274,9 +267,9 @@ await header();
 await link("link-portfolio.svg", "Portfolio", true);
 await link("link-linkedin.svg", "LinkedIn");
 await link("link-email.svg", "Email");
-await section("section-work.svg", "002", P.frameSlates.work.role.en, P.frameSlates.work.source.en);
+await section("section-work.svg", "002", P.frameSlates.work.role.en);
 for (const [i, p] of P.projects.entries()) await card(p, i);
-await section("section-stack.svg", "003", "Stack", "C++ first");
+await section("section-stack.svg", "003", "Stack");
 await stack();
-await section("section-telemetry.svg", "004", "Telemetry", "Updated daily");
+await section("section-telemetry.svg", "004", "Telemetry");
 await tail();
