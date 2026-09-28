@@ -2,7 +2,7 @@
  * Builds the README frames from the portfolio itself.
  *
  * Content comes from the portfolio's src/data/portfolio.ts, so the profile README and
- * sharllesse.github.io can never drift apart: edit a project there, run `npm run build`
+ * sharllesse.github.io can never drift apart: edit the bio there, run `npm run build`
  * here. Satori lays the frames out with flexbox and turns every glyph into a path, which
  * is what lets GitHub show Archivo and Martian Mono - an <img>'d SVG cannot load fonts.
  *
@@ -20,7 +20,6 @@ const HERE = dirname(fileURLToPath(import.meta.url));
 const REPO = resolve(HERE, "..", "..");
 const OUT = join(REPO, "assets");
 const PORTFOLIO = resolve(process.env.PORTFOLIO_DIR ?? join(REPO, "..", "..", "HTML", "sharllesse.github.io"));
-const RES = join(PORTFOLIO, "public", "resources");
 
 // versioned() in the portfolio hashes files relative to the cwd.
 process.chdir(PORTFOLIO);
@@ -51,9 +50,6 @@ function h(type: string, style: Record<string, unknown>, ...children: Node[]): N
   const kids = children.flat().filter((c) => c !== null && c !== false);
   return { type, props: { style: { display: "flex", ...style }, children: kids.length === 1 ? kids[0] : kids } };
 }
-const img = (src: string, width: number, height: number) =>
-  ({ type: "img", props: { src, width, height, style: { width, height } } });
-
 // ---- Text helpers --------------------------------------------------------------------
 const decode = (s: string) =>
   s.replace(/&lt;/g, "<").replace(/&gt;/g, ">").replace(/&quot;/g, '"').replace(/&#39;/g, "'").replace(/&amp;/g, "&");
@@ -81,41 +77,6 @@ const monoText = (text: string, size: number, color = C.ink3, extra: Record<stri
 const chip = (label: string, size = 15) =>
   h("span", { background: C.chroma, color: C.chromaOn, fontFamily: MONO, fontWeight: 600, fontSize: size,
     letterSpacing: size * 0.14, padding: `${size * 0.2}px ${size * 0.55}px` }, label);
-
-/** Portfolio code gates are highlighted HTML (<span class="k">...). Same ramp here. */
-const SYN: Record<string, Record<string, unknown>> = {
-  k: { color: C.chroma }, t: { color: C.ink }, m: { color: C.chroma, fontWeight: 600 },
-  s: { color: C.ink2 }, p: { color: C.ink3 }, "": { color: C.ink2 },
-};
-function code(html: string, size: number): Node {
-  return h("div", { flexDirection: "column", fontFamily: MONO, fontSize: size, lineHeight: 1.62 },
-    ...html.split("\n").map((line) => {
-      const toks = [...line.matchAll(/<span class="(\w)">(.*?)<\/span>|([^<]+)/g)]
-        // Non-breaking spaces: Satori trims plain spaces at span edges, which glued tokens together.
-        .map((m) => ({ cls: m[1] ?? "", text: decode(m[2] ?? m[3]).replace(/ /g, " ") }));
-      return h("div", { whiteSpace: "pre", minHeight: size * 1.62 },
-        ...toks.map((t) => h("span", { whiteSpace: "pre", ...SYN[t.cls] }, t.text)));
-    }));
-}
-
-// ---- Photographs, graded by the page's tokens (--plate-grade + toe lift) --------------
-async function graded(file: string, w: number, h_: number, focusY: number) {
-  const meta = await sharp(join(RES, file)).metadata();
-  // object-fit: cover, with the portfolio's object-position (50% focusY).
-  const scale = Math.max(w / meta.width!, h_ / meta.height!);
-  const sw = Math.ceil(meta.width! * scale), sh = Math.ceil(meta.height! * scale);
-  const left = Math.round((sw - w) / 2), top = Math.round((sh - h_) * focusY);
-  const lift = await sharp({ create: { width: w, height: h_, channels: 3, background: "#121316" } }).png().toBuffer();
-  const buf = await sharp(join(RES, file))
-    .resize({ width: sw, height: sh })
-    .extract({ left, top, width: w, height: h_ })
-    .modulate({ saturation: 0.46, hue: -8 })
-    .linear(1.06, -0.03 * 255)
-    .composite([{ input: lift, blend: "lighten" }])
-    .jpeg({ quality: 82, mozjpeg: true })
-    .toBuffer();
-  return `data:image/jpeg;base64,${buf.toString("base64")}`;
-}
 
 // ---- Output: Satori, then grain and motion it cannot express --------------------------
 /** Grain is a small pre-rendered noise tile, not an feTurbulence filter: a filter is
@@ -202,33 +163,7 @@ async function link(name: string, label: string, primary = false) {
     W, H, { grain: 0.04 });
 }
 
-// ---- 002 · Selected work -------------------------------------------------------------
-const CARD_W = 800, CARD_H = 780, GATE_H = 300;
-
-async function card(p: any, i: number) {
-  const gate = p.gate.kind === "code"
-    ? h("div", { height: GATE_H, background: C.field2, flexDirection: "column", justifyContent: "center", padding: "0 38px" },
-        h("span", { fontFamily: MONO, fontSize: 15, letterSpacing: 3, color: C.ink3, marginBottom: 20 }, p.gate.file),
-        code(p.gate.html, 19))
-    : img(await graded(p.gate.fallback.replace("/resources/", ""), 796, GATE_H, 0.34), 796, GATE_H);
-
-  await render(`work-${i + 1}.svg`,
-    h("div", { width: CARD_W, height: CARD_H, background: C.field, border: `2px solid ${C.edge}`, flexDirection: "column" },
-      h("div", { flexDirection: "column", borderBottom: `2px solid ${C.edge}` }, gate),
-      h("div", { flex: 1, flexDirection: "column", padding: "36px 38px 30px" },
-        h("span", { fontFamily: WIDE, fontWeight: 600, fontSize: 30, letterSpacing: 2.2, color: C.ink,
-          textShadow: `0 0 12px ${C.halo}` }, p.title.toUpperCase()),
-        h("div", { marginTop: 18 }, rich(p.description.en, 19.5)),
-        h("div", { marginTop: "auto", flexWrap: "wrap", gap: 10 },
-          ...p.tags.map((t: string) => h("span", { border: `1.5px solid ${C.edge}`, padding: "7px 13px",
-            fontFamily: MONO, fontSize: 14, letterSpacing: 1, color: C.ink2 }, t))),
-        h("div", { marginTop: 24, paddingTop: 18, borderTop: `1.5px solid ${C.edgeSoft}`, alignItems: "center", gap: 16 },
-          chip(`002.${i + 1}`, 14), monoText(p.date.en, 14, C.ink2), monoText(p.slate.role.en, 14),
-          h("div", { marginLeft: "auto" }, monoText(p.cta.en, 14, C.chroma, { fontWeight: 600 }))))),
-    CARD_W, CARD_H, { grain: 0.06 });
-}
-
-// ---- 003 · Stack ---------------------------------------------------------------------
+// ---- 002 · Stack ---------------------------------------------------------------------
 async function stack() {
   const rows: [string, string[]][] = [
     ["Languages", ["C++", "C#", "CMake", ".NET"]],
@@ -267,9 +202,7 @@ await header();
 await link("link-portfolio.svg", "Portfolio", true);
 await link("link-linkedin.svg", "LinkedIn");
 await link("link-email.svg", "Email");
-await section("section-work.svg", "002", P.frameSlates.work.role.en);
-for (const [i, p] of P.projects.entries()) await card(p, i);
-await section("section-stack.svg", "003", "Stack");
+await section("section-stack.svg", "002", "Stack");
 await stack();
-await section("section-telemetry.svg", "004", "Telemetry");
+await section("section-telemetry.svg", "003", "Telemetry");
 await tail();
